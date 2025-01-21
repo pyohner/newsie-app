@@ -7,9 +7,11 @@ import {Newsletter} from "../newsletter";
   standalone: true,
   imports: [],
   template: `
-    <p>
-      newsletter works!
-    </p>
+    <section class="listing">
+      <img class="listing-photo" [src]="newsletter.photo" alt="Exterior photo of {{newsletter.name}}">
+      <h2 class="listing-heading">{{ newsletter.name }}</h2>
+      <p class="listing-location">{{ newsletter.summary}}<br>Category: {{newsletter.category }}</p>
+    </section>
   `,
   styleUrl: './newsletter.component.css'
 })
