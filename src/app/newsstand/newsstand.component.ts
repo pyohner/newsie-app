@@ -14,13 +14,13 @@ import {NewsService} from "../news.service";
   template: `
     <section>
       <form>
-        <input type="text" placeholder="Filter by summary">
-        <button class="primary" type="button">Search</button>
+        <input type="text" placeholder="Filter by summary" #filter>
+        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
       </form>
     </section>
     <section class="results">
       <app-newsletter
-        *ngFor="let newsletter of newsletterList"
+        *ngFor="let newsletter of filteredNewsletterList"
         [newsletter]="newsletter">
       </app-newsletter>
     </section>
@@ -32,9 +32,22 @@ export class NewsstandComponent {
 
   newsletterList: Newsletter[] = [];
   newsService: NewsService = inject(NewsService);
+  filteredNewsletterList: Newsletter[] = [];
 
   constructor() {
     this.newsletterList = this.newsService.getAllNewsletters();
+    this.filteredNewsletterList = this.newsletterList;
+  }
+
+  filterResults(text: string) {
+    if (!text) {
+      this.filteredNewsletterList = this.newsletterList;
+      return;
+    }
+
+    this.filteredNewsletterList = this.newsletterList.filter(
+      newsletter => newsletter?.summary.toLowerCase().includes(text.toLowerCase())
+    );
   }
 
 }
