@@ -1,0 +1,95 @@
+{
+  "newsletters": [
+    {
+      "id": 0,
+      "name": "Breaking US Politics",
+      "summary": "When it happens in US Politics, you know!",
+      "category": "Politics",
+      "photo": "assets/USPolitics.png",
+      "frequency": "ASAP",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 1,
+      "name": "Daily World News",
+      "summary": "A daily recap of world events.",
+      "category": "News",
+      "photo": "assets/WorldNews.png",
+      "frequency": "Daily",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 2,
+      "name": "Pro Gardening",
+      "summary": "Tips by and for those with a green thumb in the garden.",
+      "category": "Lifestyle",
+      "photo": "assets/ProGardening.png",
+      "frequency": "Monthly",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 3,
+      "name": "World Climate News",
+      "summary": "Things are heating up!  We'll tell you why and what you can do.",
+      "category": "News",
+      "photo": "assets/WorldClimate.png",
+      "frequency": "Weekly",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 4,
+      "name": "NBA News",
+      "summary": "Basketball news in the NBA.",
+      "category": "Sports",
+      "photo": "assets/NBANews.png",
+      "frequency": "Daily",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 5,
+      "name": "MLS News",
+      "summary": "Soccer news in MLS.",
+      "category": "Sports",
+      "photo": "assets/MLSNews.png",
+      "availableUnits": 2,
+      "frequency": "Daily",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 6,
+      "name": "Breaking World News",
+      "summary": "Important world news alerts.",
+      "category": "News",
+      "photo": "assets/BreakingWorldNews.png",
+      "frequency": "ASAP",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 7,
+      "name": "Software Development Lifestyle",
+      "summary": "Keep up with the latest in the ever changing world of software development.",
+      "category": "Lifestyle",
+      "photo": "assets/SoftwareDevLifestyle.png",
+      "frequency": "ASAP",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 8,
+      "name": "Seriously Simple Bites",
+      "summary": "Only simple yummy things.",
+      "category": "Lifestyle",
+      "photo": "assets/Baking.png",
+      "frequency": "Monthly",
+      "description": "A real doozie!"
+    },
+    {
+      "id": 9,
+      "name": "Driving 'Round",
+      "summary": "Cars.",
+      "category": "Lifestyle",
+      "photo": "assets/DrivingRound.png",
+      "frequency": "Monthly",
+      "description": "A real doozie!"
+    }
+  ]
+}

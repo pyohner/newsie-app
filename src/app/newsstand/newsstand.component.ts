@@ -35,8 +35,10 @@ export class NewsstandComponent {
   filteredNewsletterList: Newsletter[] = [];
 
   constructor() {
-    this.newsletterList = this.newsService.getAllNewsletters();
-    this.filteredNewsletterList = this.newsletterList;
+    this.newsService.getAllNewsletters().then((newsletterList: Newsletter[]) => {
+      this.newsletterList = newsletterList;
+      this.filteredNewsletterList = newsletterList;
+    });
   }
 
   filterResults(text: string) {

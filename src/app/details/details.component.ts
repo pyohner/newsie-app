@@ -56,8 +56,10 @@ export class DetailsComponent {
     email: new FormControl('')
   });
   constructor() {
-    const newsletterId = Number(this.route.snapshot.params['id']);
-    this.newsletter = this.newsService.getNewsletterById(newsletterId);
+    const newsletterId = parseInt(this.route.snapshot.params['id'], 10);
+    this.newsService.getNewsletterById(newsletterId).then(newsletter => {
+      this.newsletter = newsletter;
+    });
   }
 
   submitForm() {
