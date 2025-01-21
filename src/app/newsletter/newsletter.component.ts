@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import {Newsletter} from "../newsletter";
 
 @Component({
   selector: 'app-newsletter',
@@ -12,5 +14,5 @@ import { Component } from '@angular/core';
   styleUrl: './newsletter.component.css'
 })
 export class NewsletterComponent {
-
+  @Input() newsletter!: Newsletter;
 }

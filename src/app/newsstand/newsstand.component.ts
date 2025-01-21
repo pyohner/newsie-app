@@ -18,7 +18,7 @@ import {Newsletter} from "../newsletter";
       </form>
     </section>
     <section class="results">
-      <app-newsletter></app-newsletter>
+      <app-newsletter [newsletter]="newsletter"></app-newsletter>
     </section>
   `,
   styleUrl: './newsstand.component.css'
@@ -26,7 +26,7 @@ import {Newsletter} from "../newsletter";
 export class NewsstandComponent {
   readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
-  housingLocation: Newsletter = {
+  newsletter: Newsletter = {
     id: 9999,
     name: 'Test Home',
     summary: 'Test city',
