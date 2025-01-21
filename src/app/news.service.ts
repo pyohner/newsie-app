@@ -107,4 +107,7 @@ export class NewsService {
     return this.newsletterList.find(newsletter => newsletter.id === id);
   }
   constructor() { }
+  submitForm(firstName: string, lastName: string, email: string) {
+    console.log(`Contact Us: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`);
+  }
 }
