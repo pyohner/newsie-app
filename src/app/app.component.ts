@@ -10,14 +10,37 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   template: `<main>
-    <a [routerLink]="['/']">
-      <header class="brand-name">
-        <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true">
+    <header class="brand-name">
+      <div>
+      <a [routerLink]="['/']">
+          <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true">
+        </a>
+      </div>
+      <div>
+        <nav class="nav-bar">
+          <a [routerLink]="['/']" routerLinkActive="active" class="nav-button">The Newsstand</a>
+          <a [routerLink]="['/about']" routerLinkActive="active" class="nav-button">About</a>
+        </nav>
+      </div>
       </header>
-    </a>
     <section class="content">
       <router-outlet></router-outlet>
     </section>
+    <footer>
+      <h5>
+        Explore
+      </h5>
+      <p>
+        <a [routerLink]="['/']">Home</a>
+      </p>
+      <p>
+        <a [routerLink]="['/']">Newsstand</a>
+      </p>
+      <p>
+        <a [routerLink]="['/about']">About</a>
+      </p>
+
+    </footer>
   </main>`,
   styleUrls: ['./app.component.css'],
 })

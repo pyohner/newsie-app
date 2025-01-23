@@ -7,6 +7,25 @@
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
 }
+p {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin: 10px 0;
+}
+ul {
+  list-style-type: disc; /* Default bullet style */
+  margin: 20px;
+  padding-left: 40px; /* Indent bullets from the edge */
+}
+
+ul li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px; /* Add space between list items */
+}
+
 :root {
   --primary-color: black;
   --secondary-color: #dadada;
@@ -21,3 +40,4 @@ button.primary {
   color: white;
   border-radius: 8px;
 }
+

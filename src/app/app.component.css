@@ -2,11 +2,57 @@
   --content-padding: 10px;
 }
 header {
-  display: block;
+  display: flex;
   height: 60px;
+  justify-content: space-between;
   padding: var(--content-padding);
   box-shadow: 0px 5px 25px var(--shadow-color);
 }
 .content {
   padding: var(--content-padding);
 }
+footer {
+  display: block;
+  padding: 20px 50px;
+}
+footer p {
+  font-size: small;
+  padding-left: 20px;
+  color: var(--primary-color);
+}
+footer a {
+  font-size: small;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+/* Navigation bar */
+.nav-bar {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Button-style links */
+.nav-button {
+  display: inline-block;
+  padding: 8px 8px;
+  background-color: #cccccc;
+  color: black;
+  text-decoration: none;
+  font-size: 8px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.nav-button:hover {
+  background-color: #707070;
+}
+
+.nav-button.active {
+  background-color: white;
+  font-weight: bold;
+}
+
