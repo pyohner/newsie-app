@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
       </div>
       <div>
         <nav class="nav-bar">
-          <a [routerLink]="['/']" routerLinkActive="active" class="nav-button">The Newsstand</a>
+          <a [routerLink]="['/newsstand']" routerLinkActive="active" class="nav-button">The Newsstand</a>
           <a [routerLink]="['/about']" routerLinkActive="active" class="nav-button">About</a>
         </nav>
       </div>
@@ -34,7 +34,7 @@ import { RouterModule } from '@angular/router';
         <a [routerLink]="['/']">Home</a>
       </p>
       <p>
-        <a [routerLink]="['/']">Newsstand</a>
+        <a [routerLink]="['/newsstand']">Newsstand</a>
       </p>
       <p>
         <a [routerLink]="['/about']">About</a>

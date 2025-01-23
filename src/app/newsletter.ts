@@ -6,4 +6,5 @@ export interface Newsletter {
   photo: string;
   frequency: string;
   description: string;
+  featured: boolean;
 }

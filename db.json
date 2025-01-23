@@ -7,7 +7,8 @@
       "category": "Politics",
       "photo": "assets/USPolitics.png",
       "frequency": "ASAP",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": false
     },
     {
       "id": 1,
@@ -16,7 +17,8 @@
       "category": "News",
       "photo": "assets/WorldNews.png",
       "frequency": "Daily",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": false
     },
     {
       "id": 2,
@@ -25,7 +27,8 @@
       "category": "Lifestyle",
       "photo": "assets/ProGardening.png",
       "frequency": "Monthly",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": true
     },
     {
       "id": 3,
@@ -34,7 +37,8 @@
       "category": "News",
       "photo": "assets/WorldClimate.png",
       "frequency": "Weekly",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": false
     },
     {
       "id": 4,
@@ -43,7 +47,8 @@
       "category": "Sports",
       "photo": "assets/NBANews.png",
       "frequency": "Daily",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": false
     },
     {
       "id": 5,
@@ -53,7 +58,8 @@
       "photo": "assets/MLSNews.png",
       "availableUnits": 2,
       "frequency": "Daily",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": false
     },
     {
       "id": 6,
@@ -62,7 +68,8 @@
       "category": "News",
       "photo": "assets/BreakingWorldNews.png",
       "frequency": "ASAP",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": false
     },
     {
       "id": 7,
@@ -71,7 +78,8 @@
       "category": "Lifestyle",
       "photo": "assets/SoftwareDevLifestyle.png",
       "frequency": "ASAP",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": true
     },
     {
       "id": 8,
@@ -80,7 +88,8 @@
       "category": "Lifestyle",
       "photo": "assets/Baking.png",
       "frequency": "Monthly",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": true
     },
     {
       "id": 9,
@@ -89,7 +98,8 @@
       "category": "Lifestyle",
       "photo": "assets/DrivingRound.png",
       "frequency": "Monthly",
-      "description": "A real doozie!"
+      "description": "A real doozie!",
+      "featured": false
     }
   ]
 }
