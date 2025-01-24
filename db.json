@@ -27,7 +27,7 @@
       "category": "Lifestyle",
       "photo": "assets/ProGardening.png",
       "frequency": "Monthly",
-      "description": "A real doozie!",
+      "description": "A collection of expert gardening tips and news, with a curated list of the latest articles, blog posts, and studies on plant care, landscaping, and eco-friendly gardening practices. Each link is accompanied by a brief summary to help you dig deeper into your garden projects.",
       "featured": true
     },
     {
@@ -58,7 +58,7 @@
       "photo": "assets/MLSNews.png",
       "availableUnits": 2,
       "frequency": "Daily",
-      "description": "A real doozie!",
+      "description": "Stay updated with Major League Soccer through a curated list of articles, match reports, player transfers, and league news. Each newsletter features summaries and links to the most relevant stories for soccer fans across North America.",
       "featured": false
     },
     {
@@ -68,7 +68,7 @@
       "category": "News",
       "photo": "assets/BreakingWorldNews.png",
       "frequency": "ASAP",
-      "description": "A real doozie!",
+      "description": "Get the top breaking global stories, with a curated selection of the most urgent news articles and reports from trusted sources. Each issue includes a brief description of each link to help you quickly understand and follow the unfolding events.",
       "featured": false
     },
     {
@@ -78,7 +78,7 @@
       "category": "Lifestyle",
       "photo": "assets/SoftwareDevLifestyle.png",
       "frequency": "ASAP",
-      "description": "A real doozie!",
+      "description": "A curated collection of resources for software developers, featuring links to blog posts, tutorials, and articles on coding techniques, work-life balance, and industry trends. Each link is accompanied by a description to offer you key insights and advice in your development journey.",
       "featured": true
     },
     {

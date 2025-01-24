@@ -26,10 +26,11 @@ import { RouterModule } from '@angular/router';
     <section class="content">
       <router-outlet></router-outlet>
     </section>
+    <hr class="footer-line">
     <footer>
-      <h5>
-        Explore
-      </h5>
+      <p>
+        <b>Explore</b>
+      </p>
       <p>
         <a [routerLink]="['/']">Home</a>
       </p>
