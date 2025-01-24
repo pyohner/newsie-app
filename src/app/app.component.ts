@@ -39,6 +39,7 @@ import { RouterModule } from '@angular/router';
       <p>
         <a [routerLink]="['/about']">About</a>
       </p>
+      <p>&copy; {{ currentYear }} Newsie. All rights reserved.</p>
 
     </footer>
   </main>`,
@@ -46,4 +47,7 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'newsie';
+
+  currentYear: number = new Date().getFullYear();
+
 }

@@ -13,12 +13,20 @@ import {FeaturedComponent} from "../featured/featured.component";
     FeaturedComponent
   ],
   template: `
-    <p>
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Newsie</h1>
+        <h3>It's all you need to know.</h3>
+      </div>
+    </div>
+    <main>
+    <h2>
       Featured Subscriptions
-    </p>
+    </h2>
     <section class="results">
       <app-featured></app-featured>
     </section>
+    </main>
   `,
   styleUrl: './home.component.css'
 })
