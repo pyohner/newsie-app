@@ -14,9 +14,9 @@ import {RouterLink, RouterOutlet} from "@angular/router";
     <section class="listing">
       <img class="listing-photo" [src]="newsletter.photo" alt="Exterior photo of {{newsletter.name}}">
       <div class="listing-details">
-      <h2 class="listing-heading">{{ newsletter.name }}</h2>
-      <p class="listing-location">{{ newsletter.summary}}<br>Category: {{newsletter.category }}</p>
-      <a [routerLink]="['/details', newsletter.id]">Learn More</a>
+        <h2 class="listing-heading">{{ newsletter.name }}</h2>
+        <p class="listing-summary">{{ newsletter.summary }}<br>Category: {{ newsletter.category }}</p>
+        <a [routerLink]="['/details', newsletter.id]">Learn More</a>
       </div>
     </section>
   `,

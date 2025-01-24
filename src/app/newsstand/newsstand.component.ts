@@ -12,7 +12,9 @@ import {NewsService} from "../news.service";
     NewsletterComponent
   ],
   template: `
-    <section>
+    <main>
+      <h1 class="title">The Newsstand</h1>
+      <section class="search">
       <form>
         <input type="text" placeholder="Filter by summary" #filter>
         <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
@@ -24,6 +26,7 @@ import {NewsService} from "../news.service";
         [newsletter]="newsletter">
       </app-newsletter>
     </section>
+    </main>
   `,
   styleUrl: './newsstand.component.css'
 })

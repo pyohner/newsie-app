@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <main>
-    <h1>About Newsie</h1>
+    <h1 class="title">About Newsie</h1>
     <p>
       Welcome to <b>Newsie</b>, your personalized newsletter subscription platform!
     </p>

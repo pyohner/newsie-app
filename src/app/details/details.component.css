@@ -1,37 +1,51 @@
+main {
+  padding: 20px 200px;
+}
+h1.title {
+  font-size: 62px;
+  text-align: center;
+}
+.listing {
+  display: flex;
+  align-items: flex-start; /* Align items to the top of the container */
+  gap: 20px; /* Space between the image and the text */
+  margin-top: 20px;
+  margin-bottom: 40px; /* Ensure there’s space between this section and the footer */
+}
 .listing-photo {
-  height: 600px;
-  width: 50%;
+  height: 300px;
+  width: 400px;
   object-fit: cover;
   border-radius: 30px;
-  float: right;
+  /*float: right;*/
+}
+
+.listing-content {
+  flex: 1; /* Allow the content to take the remaining space */
 }
 
 .listing-heading {
-  font-size: 48pt;
+  font-size: 24pt;
   font-weight: bold;
   margin-bottom: 15px;
 }
 
-.listing-location::before {
-  content: url('/assets/location-pin.svg') / '';
-}
-
-.listing-location {
+.listing-summary {
   font-size: 24pt;
   margin-bottom: 15px;
 }
 
-.listing-features > .section-heading {
+.listing-info > .section-heading {
   color: var(--secondary-color);
   font-size: 24pt;
   margin-bottom: 15px;
 }
 
-.listing-features {
+.listing-info {
   margin-bottom: 20px;
 }
 
-.listing-features li {
+.listing-info li {
   font-size: 14pt;
 }
 
@@ -39,33 +53,33 @@ li {
   list-style-type: none;
 }
 
-.listing-apply .section-heading {
-  font-size: 18pt;
-  margin-bottom: 15px;
-}
+/*.listing-apply .section-heading {*/
+/*  font-size: 18pt;*/
+/*  margin-bottom: 15px;*/
+/*}*/
 
-label, input {
-  display: block;
-}
-label {
-  color: var(--secondary-color);
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 12pt;
-}
-input {
-  font-size: 16pt;
-  margin-bottom: 15px;
-  padding: 10px;
-  width: 400px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom: solid .3px;
-}
-@media (max-width: 1024px) {
-  .listing-photo {
-    width: 100%;
-    height: 400px;
-  }
-}
+/*label, input {*/
+/*  display: block;*/
+/*}*/
+/*label {*/
+/*  color: var(--secondary-color);*/
+/*  font-weight: bold;*/
+/*  text-transform: uppercase;*/
+/*  font-size: 12pt;*/
+/*}*/
+/*input {*/
+/*  font-size: 16pt;*/
+/*  margin-bottom: 15px;*/
+/*  padding: 10px;*/
+/*  width: 400px;*/
+/*  border-top: none;*/
+/*  border-right: none;*/
+/*  border-left: none;*/
+/*  border-bottom: solid .3px;*/
+/*}*/
+/*@media (max-width: 1024px) {*/
+/*  .listing-photo {*/
+/*    width: 100%;*/
+/*    height: 400px;*/
+/*  }*/
+/*}*/
