@@ -1,6 +1,10 @@
 main {
   padding: 20px 50px;
 }
+.main-content {
+  flex: 1; /* Allow the main content to take up remaining space */
+  padding: 20px;
+}
 h1.title {
   font-size: 62px;
   text-align: center;
@@ -9,12 +13,14 @@ h1.title {
   display: grid;
   column-gap: 14px;
   row-gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
   margin-top: 50px;
   justify-content: space-around;
 }
 .search {
-  margin-top: 50px;
+  /*margin-top: 50px;*/
+  margin-bottom: 20px; /* Add spacing between search bar and results */
+
 }
 input[type="text"] {
   border: solid 1px var(--primary-color);
@@ -46,4 +52,26 @@ button {
   .results {
     grid-template-columns: 1fr;
   }
+}
+
+.container {
+  display: flex;
+  /*margin: 20px;*/
+  flex-direction: row; /* Ensure it's horizontal */
+  gap: 20px; /* Add spacing between the filter panel and content */
+}
+
+.filter-panel {
+  width: 200px; /* Set a fixed width for the filter panel */
+  padding: 15px;
+  border-right: 2px solid #ccc;
+}
+
+.filter-panel p {
+  margin-bottom: 15px;
+}
+
+.filter-panel label {
+  display: block;
+  margin-bottom: 10px;
 }
