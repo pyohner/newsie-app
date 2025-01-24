@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "username": "user1",
+      "password": "password123",
+      "email": "user1@example.com"
+    }
+  ],
   "newsletters": [
     {
       "id": 0,

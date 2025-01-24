@@ -15,7 +15,7 @@ import { Newsletter} from "../newsletter";
   template: `
     <main>
       <h1 class="title">The Newsstand</h1>
-      <a (click)="goBack()" class="back-link">← Back</a>
+      <a (click)="goBack()" class="back-link">Back</a>
 
       <section class="listing">
         <img class="listing-photo" [src]="newsletter?.photo"
