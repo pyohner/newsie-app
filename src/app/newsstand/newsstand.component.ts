@@ -16,7 +16,7 @@ import {NewsService} from "../news.service";
       <h1 class="title">The Newsstand</h1>
       <section class="search">
       <form>
-        <input type="text" placeholder="Filter by summary" #filter>
+        <input type="text" placeholder="Search titles" #filter>
         <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
       </form>
     </section>
@@ -51,7 +51,7 @@ export class NewsstandComponent {
     }
 
     this.filteredNewsletterList = this.newsletterList.filter(
-      newsletter => newsletter?.summary.toLowerCase().includes(text.toLowerCase())
+      newsletter => newsletter?.name.toLowerCase().includes(text.toLowerCase())
     );
   }
 

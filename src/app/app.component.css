@@ -40,24 +40,28 @@ footer a {
 .nav-button {
   display: inline-block;
   padding: 8px 8px;
-  background-color: #cccccc;
+  background-color: white;
   color: black;
   text-decoration: none;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: normal;
-  letter-spacing: 2px;
   border-radius: 8px;
   transition: background-color 0.3s ease;
 }
 
 /* Hover effect for buttons */
 .nav-button:hover {
-  background-color: #707070;
+  background-color: #000000;
+  color: white;
 }
 
 .nav-button.active {
-  background-color: white;
+  background-color: whitesmoke;
   font-weight: bold;
+}
+
+.nav-button.active:hover {
+  color: black;
 }
 
 .footer-line {
