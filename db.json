@@ -7,7 +7,7 @@
       "category": "Politics",
       "photo": "assets/USPolitics.png",
       "frequency": "ASAP",
-      "description": "A real doozie!",
+      "description": "A daily roundup of the most important political headlines in the U.S. with a curated list of articles, expert analyses, and breaking news links. Stay informed about the latest in policy changes, elections, and legislative developments.",
       "featured": false
     },
     {
@@ -17,7 +17,7 @@
       "category": "News",
       "photo": "assets/WorldNews.png",
       "frequency": "Daily",
-      "description": "A real doozie!",
+      "description": "Your global news digest, featuring a selection of top stories from around the world. Each issue includes curated links to key reports on international politics, social movements, and global events, with insightful descriptions to guide your reading.",
       "featured": false
     },
     {
@@ -37,7 +37,7 @@
       "category": "News",
       "photo": "assets/WorldClimate.png",
       "frequency": "Weekly",
-      "description": "A real doozie!",
+      "description": "Curated coverage of global climate change, sustainability efforts, and environmental policy. This newsletter includes a carefully selected list of articles and studies on climate action, conservation, and environmental news, along with summaries for quick insights.",
       "featured": false
     },
     {
@@ -47,7 +47,7 @@
       "category": "Sports",
       "photo": "assets/NBANews.png",
       "frequency": "Daily",
-      "description": "A real doozie!",
+      "description": "A curated collection of the latest NBA news, game highlights, player updates, and league insights. Each edition includes links to expert analyses, team rankings, and breaking news stories with descriptions to keep you in the loop on everything basketball.",
       "featured": false
     },
     {
@@ -88,7 +88,7 @@
       "category": "Lifestyle",
       "photo": "assets/Baking.png",
       "frequency": "Monthly",
-      "description": "A real doozie!",
+      "description": "Your go-to source for easy, delicious recipes to whip up in your own kitchen. Each month, we curate a selection of simple yet mouthwatering dishes that anyone can make, no matter their cooking experience. From quick snacks to satisfying meals, these bite-sized recipes are sure to satisfy your cravings without the hassle.",
       "featured": true
     },
     {
@@ -98,7 +98,7 @@
       "category": "Lifestyle",
       "photo": "assets/DrivingRound.png",
       "frequency": "Monthly",
-      "description": "A real doozie!",
+      "description": "For the car enthusiast who loves everything about the world of wheels. Every edition of Driving 'Round brings you the latest news on car culture, reviews, and updates from the automotive world. From new releases to classic models, and from racing circuits to road trips, this newsletter is your pit stop for all things car-related. Buckle up for the ride!",
       "featured": false
     }
   ]
