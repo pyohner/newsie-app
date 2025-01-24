@@ -1,9 +1,11 @@
 import {Component, inject, Input} from '@angular/core';
 import {Newsletter} from "../newsletter";
+/*
 import { NewsletterComponent} from "../newsletter/newsletter.component";
+*/
 import {CommonModule} from "@angular/common";
 import {NewsService} from "../news.service";
-
+import {FeaturednewsletterComponent} from "../featurednewsletter/featurednewsletter.component";
 
 
 @Component({
@@ -11,14 +13,15 @@ import {NewsService} from "../news.service";
   standalone: true,
   imports: [
     CommonModule,
-    NewsletterComponent
+    FeaturednewsletterComponent
+    /*NewsletterComponent*/
   ],
   template: `
     <section class="results">
-      <app-newsletter
+      <app-featurednewsletter
         *ngFor="let newsletter of filteredNewsletterList"
         [newsletter]="newsletter">
-      </app-newsletter>
+      </app-featurednewsletter>
     </section>
   `,
   styleUrl: './featured.component.css'
