@@ -5,6 +5,20 @@ h1.title {
   font-size: 62px;
   text-align: center;
 }
+.back-link {
+  text-decoration: none;
+  color: #707070;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline;
+  margin: 10px 0;
+}
+
+.back-link:hover {
+  /*text-decoration: underline;*/
+  color: black;
+}
+
 .listing {
   display: flex;
   align-items: flex-start; /* Align items to the top of the container */

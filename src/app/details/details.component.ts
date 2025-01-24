@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { NewsService} from "../news.service";
 import { Newsletter} from "../newsletter";
@@ -15,8 +15,10 @@ import { Newsletter} from "../newsletter";
   template: `
     <main>
       <h1 class="title">The Newsstand</h1>
+      <a (click)="goBack()" class="back-link">← Back</a>
+
       <section class="listing">
-    <img class="listing-photo" [src]="newsletter?.photo"
+        <img class="listing-photo" [src]="newsletter?.photo"
            alt="Image of {{newsletter?.name}}"/>
       <div class="listing-content">
         <h2 class="listing-heading">{{ newsletter?.name }}</h2>
@@ -57,11 +59,14 @@ export class DetailsComponent {
   //   lastName: new FormControl(''),
   //   email: new FormControl('')
   // });
-  constructor() {
+  constructor(private location: Location) {
     const newsletterId = parseInt(this.route.snapshot.params['id'], 10);
     this.newsService.getNewsletterById(newsletterId).then(newsletter => {
       this.newsletter = newsletter;
     });
+  }
+  goBack(): void {
+    this.location.back(); // Navigates to the previous page
   }
 
   // submitForm() {
