@@ -35,7 +35,7 @@ import { RouterModule } from '@angular/router';
         <a [routerLink]="['/']">Home</a>
       </p>
       <p>
-        <a [routerLink]="['/newsstand']">Newsstand</a>
+        <a [routerLink]="['/newsstand']">The Newsstand</a>
       </p>
       <p>
         <a [routerLink]="['/about']">About</a>
