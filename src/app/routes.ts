@@ -4,6 +4,9 @@ import { DetailsComponent } from './details/details.component';
 import {AboutComponent} from "./about/about.component";
 import {HomeComponent} from "./home/home.component";
 import {FeaturedComponent} from "./featured/featured.component";
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
 
 
 const routeConfig: Routes = [
@@ -32,6 +35,22 @@ const routeConfig: Routes = [
     component: FeaturedComponent,
     title: 'Featured newsletters'
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'Login'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    title: 'Register'
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    title: 'Forgot Password'
+  }
+
 
 ];
 
