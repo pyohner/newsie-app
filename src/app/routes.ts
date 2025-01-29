@@ -5,6 +5,7 @@ import {AboutComponent} from "./about/about.component";
 import {HomeComponent} from "./home/home.component";
 import {FeaturedComponent} from "./featured/featured.component";
 
+
 const routeConfig: Routes = [
   {
     path: '',
@@ -30,7 +31,7 @@ const routeConfig: Routes = [
     path: 'featured',
     component: FeaturedComponent,
     title: 'Featured newsletters'
-  }
+  },
 
 ];
 
