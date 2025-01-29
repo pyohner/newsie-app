@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
           <a [routerLink]="['/newsstand']" routerLinkActive="active" class="nav-button">The Newsstand</a>
           <a [routerLink]="['/about']" routerLinkActive="active" class="nav-button">About</a>
 
-          <a [routerLink]="['/login']" routerLinkActive="active" class="login-button">Login</a>
+          <a [routerLink]="['/login']" routerLinkActive="active" class="login-button">Sign In</a>
           <a [routerLink]="['/register']" routerLinkActive="active" class="register-button">Register</a>
         </nav>
       </div>
