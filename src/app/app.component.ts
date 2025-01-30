@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
 import {NewsstandComponent} from "./newsstand/newsstand.component";
 import { RouterModule } from '@angular/router';
+import {AuthService} from "./auth.service";
+import {AsyncPipe, CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     NewsstandComponent,
-    RouterModule
+    RouterModule,
+    AsyncPipe,
+    CommonModule
   ],
   template: `<main>
     <header class="brand-name">
@@ -21,8 +25,10 @@ import { RouterModule } from '@angular/router';
           <a [routerLink]="['/newsstand']" routerLinkActive="active" class="nav-button">The Newsstand</a>
           <a [routerLink]="['/about']" routerLinkActive="active" class="nav-button">About</a>
 
-          <a [routerLink]="['/login']" routerLinkActive="active" class="login-button">Sign In</a>
-          <a [routerLink]="['/register']" routerLinkActive="active" class="register-button">Register</a>
+          <a *ngIf="!(isLoggedIn | async)" [routerLink]="['/login']" routerLinkActive="active" class="login-button">Sign In</a>
+          <a *ngIf="!(isLoggedIn | async)" [routerLink]="['/register']" routerLinkActive="active" class="register-button">Register</a>
+          <a *ngIf="isLoggedIn | async" (click)="onLogout($event)" [routerLink]="['/login']" routerLinkActive="active" class="logout-button">Sign Out</a>
+
         </nav>
       </div>
       </header>
@@ -51,7 +57,15 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'newsie';
-
   currentYear: number = new Date().getFullYear();
+
+  isLoggedIn = this.authService.isLoggedIn$;
+
+  constructor(private authService: AuthService) {}
+
+  onLogout(event: Event) {
+    event.preventDefault();  // Prevent default behavior of routerLink
+    this.authService.logout();  // Call the logout method to clear session
+  }
 
 }

@@ -122,3 +122,29 @@ footer a {
 .register-button.active:hover {
   color: black;
 }
+
+.logout-button {
+  display: inline-block;
+  padding: 8px 8px;
+  background-color: lightgray;
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: normal;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+}
+/*.login-button:hover {*/
+/*  background-color: #000000;*/
+/*  color: white;*/
+/*}*/
+
+.logout-button.active {
+  background-color: whitesmoke;
+  font-weight: bold;
+}
+
+.logout-button.active:hover {
+  color: black;
+}
