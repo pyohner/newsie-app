@@ -5,6 +5,12 @@
       "username": "user1",
       "password": "password123",
       "email": "user1@example.com"
+    },
+    {
+      "id": 2,
+      "username": "user2",
+      "password": "111111",
+      "email": "1@1"
     }
   ],
   "newsletters": [
@@ -108,6 +114,20 @@
       "frequency": "Monthly",
       "description": "For the car enthusiast who loves everything about the world of wheels. Every edition of Driving 'Round brings you the latest news on car culture, reviews, and updates from the automotive world. From new releases to classic models, and from racing circuits to road trips, this newsletter is your pit stop for all things car-related. Buckle up for the ride!",
       "featured": false
+    }
+  ],
+  "subscriptions": [
+    {
+      "userId": 1,
+      "newsletterId": 1
+    },
+    {
+      "userId": 1,
+      "newsletterId": 2
+    },
+    {
+      "userId": 2,
+      "newsletterId": 3
     }
   ]
 }
