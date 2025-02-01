@@ -24,7 +24,7 @@ export class AuthService {
         }
         return false; // Failure
       }),
-      catchError(() => of(false)) // Handle errors gracefully
+      catchError(() => of(false))
     );
   }
 

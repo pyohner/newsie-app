@@ -46,9 +46,9 @@ export class NewsletterComponent {
   }
 
   ngOnInit(): void {
-    this.userId = this.authService.getUserId(); // Retrieve user ID
+    this.userId = this.authService.getUserId();
     console.log("User ID:", this.userId);
-    console.log("Newsletter ID:", this.newsletterId); // Check if it's defined
+    console.log("Newsletter ID:", this.newsletterId);
 
     if (this.userId !== null && this.newsletterId !== undefined) {
       this.isSubscribed = this.subscriptionService.isSubscribed(this.newsletterId);

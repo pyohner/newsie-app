@@ -8,12 +8,9 @@ import {AuthService} from "./auth.service";
   providedIn: 'root'
 })
 export class SubscriptionService {
-  // private userId: number | null = this.authService.getUserId(); // Store user ID
-
   private apiUrl = 'http://localhost:3000/subscriptions';
 
   constructor(private http: HttpClient, private authService: AuthService) {
-    // this.userId = this.authService.getUserId();
   }
 
   isSubscribed(newsletterId: number): Observable<boolean> {
@@ -45,11 +42,5 @@ export class SubscriptionService {
         return of(false);
       })
     );
-    // return this.http.get<any[]>(this.apiUrl).pipe(
-    //   map(subscriptions =>
-    //     subscriptions.some(sub => sub.userId === userId && sub.newsletterId === newsletterId)
-    //   ),
-    //   catchError(() => of(false))
-    // );
   }
 }

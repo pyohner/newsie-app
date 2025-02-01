@@ -3,7 +3,6 @@ import { NewsletterComponent} from "../newsletter/newsletter.component";
 import {CommonModule} from "@angular/common";
 import {FeaturedComponent} from "../featured/featured.component";
 
-
 @Component({
   selector: 'app-home',
   standalone: true,

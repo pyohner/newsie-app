@@ -1,12 +1,8 @@
 import {Component, inject, Input} from '@angular/core';
 import {Newsletter} from "../newsletter";
-/*
-import { NewsletterComponent} from "../newsletter/newsletter.component";
-*/
 import {CommonModule} from "@angular/common";
 import {NewsService} from "../news.service";
 import {FeaturednewsletterComponent} from "../featurednewsletter/featurednewsletter.component";
-
 
 @Component({
   selector: 'app-featured',
@@ -14,7 +10,6 @@ import {FeaturednewsletterComponent} from "../featurednewsletter/featurednewslet
   imports: [
     CommonModule,
     FeaturednewsletterComponent
-    /*NewsletterComponent*/
   ],
   template: `
     <section class="results">

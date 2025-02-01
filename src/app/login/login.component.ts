@@ -4,7 +4,6 @@ import {FormsModule} from "@angular/forms";
 import { NgIf } from '@angular/common';
 import {Router} from "@angular/router";
 
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -45,8 +44,7 @@ export class LoginComponent {
     if (this.email && this.password) {
       this.authService.login(this.email, this.password).subscribe(success => {
         if (success) {
-          //alert('Valid credentials');
-          this.router.navigate(['/']); // Redirect on success
+          this.router.navigate(['/']);
         } else {
           alert('Invalid credentials');
         }

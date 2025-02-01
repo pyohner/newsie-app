@@ -91,7 +91,7 @@ export class NewsstandComponent {
       );
     }
   }
-// Handle category selection
+
   onCategoryChange(event: any): void {
     const category = event.target.value;
 

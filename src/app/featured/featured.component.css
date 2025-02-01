@@ -34,9 +34,6 @@ section.listing a::after {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /*column-gap: 14px;*/
-  /*row-gap: 14px;*/
-  /*grid-template-columns: repeat(auto-fill, minmax(400px, 400px));*/
   margin-top: 20px;
   justify-content: space-around;
 }

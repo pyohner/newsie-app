@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-// import { CommonModule } from "@angular/common";
 import {Newsletter} from "../newsletter";
 import {RouterLink, RouterOutlet} from "@angular/router";
 
