@@ -21,13 +21,11 @@ import {Observable} from "rxjs";
         <img class="listing-photo" [src]="newsletter.photo" alt="Exterior photo of {{newsletter.name}}">
         <h2 class="listing-heading">{{ newsletter.name }}</h2>
       </a>
-        User ID: {{userId}}<br>
-        IsSubscribed: {{isSubscribed | async}}<br>
       <nav class="sub-bar">
         <div *ngIf="isLoggedIn | async">
 
           <a *ngIf="!(isSubscribed | async)"  class="sub-button">Subscribe</a>
-          <a *ngIf="(isSubscribed | async)" class="sub-button">Unsubscribe</a>
+          <a *ngIf="(isSubscribed | async)" class="unsub-button">Unsubscribe</a>
 
         </div>
       </nav>

@@ -23,7 +23,6 @@
 section.listing a {
   /*padding-left: 20px;*/
   text-decoration: none;
-  color: var(--primary-color);
 }
 section.listing a::after {
   /*content: "\203A";*/
@@ -36,6 +35,7 @@ section.listing p {
 .sub-bar {
   display: flex;
   gap: 10px; /* Space between buttons */
+  padding: 10px 20px 0 20px;
 }
 
 /* Button-style links */
@@ -57,11 +57,22 @@ section.listing p {
   color: white;
 }
 
-.sub-button.active {
-  background-color: whitesmoke;
-  font-weight: bold;
+.unsub-button {
+  display: inline-block;
+  padding: 8px 8px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: normal;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
-.sub-button.active:hover {
+/* Hover effect for buttons */
+.unsub-button:hover {
+  background-color: white;
   color: black;
 }
+
+
