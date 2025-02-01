@@ -32,4 +32,9 @@ export class AuthService {
     this.isLoggedInSubject.next(false);
     localStorage.removeItem('user');
   }
+
+  getUserId(): number | null {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user).id : null;
+  }
 }
