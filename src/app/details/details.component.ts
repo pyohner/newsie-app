@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
+import {AsyncPipe, CommonModule, Location, NgIf} from '@angular/common';
 import {ActivatedRoute, RouterLinkActive} from '@angular/router';
 import { NewsService} from "../news.service";
 import { Newsletter} from "../newsletter";
 import {AuthService} from "../auth.service";
+import {Observable} from "rxjs";
+import {SubscriptionService} from "../subscription.service";
 
 @Component({
   selector: 'app-details',
@@ -11,6 +13,8 @@ import {AuthService} from "../auth.service";
   imports: [
     CommonModule,
     RouterLinkActive,
+    AsyncPipe,
+    NgIf
   ],
   template: `
     <main>
@@ -27,8 +31,8 @@ import {AuthService} from "../auth.service";
         <nav class="sub-bar">
         <div *ngIf="isLoggedIn | async">
 
-          <a class="sub-button">Subscribe</a>
-          <a class="sub-button">Unsubscribe</a>
+          <a *ngIf="!(isSubscribed | async)"  class="sub-button">Subscribe</a>
+          <a *ngIf="(isSubscribed | async)" class="unsub-button">Unsubscribe</a>
 
         </div>
         </nav>
@@ -42,17 +46,34 @@ export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   newsService = inject(NewsService);
   newsletter: Newsletter | undefined;
+  newsletterId: number | undefined;
 
+  userId: number | null = null;
   isLoggedIn = this.authService.isLoggedIn$;
+  isSubscribed!: Observable<boolean>;
 
-  constructor(private location: Location, private authService: AuthService) {
+  constructor(
+    private location: Location,
+    private authService: AuthService,
+    private subscriptionService: SubscriptionService
+  ) {
     const newsletterId = parseInt(this.route.snapshot.params['id'], 10);
     this.newsService.getNewsletterById(newsletterId).then(newsletter => {
       this.newsletter = newsletter;
+      this.newsletterId = newsletterId;
+
+      this.userId = this.authService.getUserId();
+      console.log("User ID:", this.userId);
+      console.log("Newsletter ID:", this.newsletterId);
+
+      if (this.userId !== null && this.newsletterId !== undefined) {
+        this.isSubscribed = this.subscriptionService.isSubscribed(this.newsletterId);
+      } else {
+        console.warn("Missing userId or newsletterId");
+      }
     });
   }
   goBack(): void {
-    this.location.back(); // Navigates to the previous page
+    this.location.back();
   }
-
 }
