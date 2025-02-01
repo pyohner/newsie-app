@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterLinkActive} from '@angular/router';
 import { NewsService} from "../news.service";
 import { Newsletter} from "../newsletter";
-// import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-details',
   standalone: true,
   imports: [
     CommonModule,
-    // ReactiveFormsModule
+    RouterLinkActive,
   ],
   template: `
     <main>
@@ -23,29 +23,18 @@ import { Newsletter} from "../newsletter";
       <div class="listing-content">
         <h2 class="listing-heading">{{ newsletter?.name }}</h2>
         <p class="listing-info">{{ newsletter?.description }}</p>
-<!--        <h2 class="section-heading">About this newsletter</h2>-->
-<!--        <ul class="listing-info">-->
-<!--          <li>Category: {{ newsletter?.category }}</li>-->
-<!--          <li>Frequency: {{ newsletter?.frequency }}</li>-->
-<!--          <li>Description: {{ newsletter?.description }}</li>-->
-<!--        </ul>-->
+
+        <nav class="sub-bar">
+        <div *ngIf="isLoggedIn | async">
+
+          <a class="sub-button">Subscribe</a>
+          <a class="sub-button">Unsubscribe</a>
+
+        </div>
+        </nav>
       </div>
       </section>
     </main>
-<!--      <section class="listing-ask">-->
-<!--        <h2 class="section-heading">Ask us about it.</h2>-->
-<!--        <form [formGroup]="askForm" (submit)="submitForm()">-->
-<!--          <label for="first-name">First Name</label>-->
-<!--          <input id="first-name" type="text" formControlName="firstName">-->
-
-<!--          <label for="last-name">Last Name</label>-->
-<!--          <input id="last-name" type="text" formControlName="lastName">-->
-
-<!--          <label for="email">Email</label>-->
-<!--          <input id="email" type="email" formControlName="email">-->
-<!--          <button type="submit" class="primary">Apply now</button>-->
-<!--        </form>-->
-<!--      </section>-->
   `,
   styleUrl: './details.component.css'
 })
@@ -54,12 +43,9 @@ export class DetailsComponent {
   newsService = inject(NewsService);
   newsletter: Newsletter | undefined;
 
-  // askForm = new FormGroup({
-  //   firstName: new FormControl(''),
-  //   lastName: new FormControl(''),
-  //   email: new FormControl('')
-  // });
-  constructor(private location: Location) {
+  isLoggedIn = this.authService.isLoggedIn$;
+
+  constructor(private location: Location, private authService: AuthService) {
     const newsletterId = parseInt(this.route.snapshot.params['id'], 10);
     this.newsService.getNewsletterById(newsletterId).then(newsletter => {
       this.newsletter = newsletter;
@@ -69,11 +55,4 @@ export class DetailsComponent {
     this.location.back(); // Navigates to the previous page
   }
 
-  // submitForm() {
-    //   this.newsService.submitForm(
-    //     this.askForm.value.firstName ?? '',
-    //     this.askForm.value.lastName ?? '',
-    //     this.askForm.value.email ?? ''
-    //   );
-    // }
 }
