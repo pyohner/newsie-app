@@ -72,6 +72,39 @@ li {
   list-style-type: none;
 }
 
+.sub-bar {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Button-style links */
+.sub-button {
+  display: inline-block;
+  padding: 8px 8px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: normal;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.sub-button:hover {
+  background-color: #000000;
+  color: white;
+}
+
+.sub-button.active {
+  background-color: whitesmoke;
+  font-weight: bold;
+}
+
+.sub-button.active:hover {
+  color: black;
+}
+
 /*.listing-apply .section-heading {*/
 /*  font-size: 18pt;*/
 /*  margin-bottom: 15px;*/
