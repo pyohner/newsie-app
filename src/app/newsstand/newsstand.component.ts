@@ -42,6 +42,7 @@ import {NewsService} from "../news.service";
     <div class="results">
       <app-newsletter
         *ngFor="let newsletter of filteredNewsletterList"
+        [newsletterId]="newsletter.id"
         [newsletter]="newsletter">
       </app-newsletter>
     </div>
