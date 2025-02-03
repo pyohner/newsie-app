@@ -77,3 +77,35 @@ button {
   display: block;
   margin-bottom: 10px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  background-color: #d0d0d0;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+}
+
+.pagination button:disabled {
+  background-color: #f7f7f7;
+  cursor: not-allowed;
+  color: #aaa;
+}
+
+.pagination span {
+  font-size: 16px;
+  margin: 0 10px;
+}

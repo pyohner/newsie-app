@@ -41,11 +41,16 @@ import {NewsService} from "../news.service";
     </div>
     <div class="results">
       <app-newsletter
-        *ngFor="let newsletter of filteredNewsletterList"
+        *ngFor="let newsletter of paginatedNewsletterList"
         [newsletterId]="newsletter.id"
         [newsletter]="newsletter">
       </app-newsletter>
     </div>
+          <div class="pagination">
+            <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+          </div>
     </div>
       </div>
     </div>
@@ -57,23 +62,34 @@ export class NewsstandComponent {
 
   newsletterList: Newsletter[] = [];
   newsService: NewsService = inject(NewsService);
+
+  originalNewsletterList: Newsletter[] = [];
   filteredNewsletterList: Newsletter[] = [];
+  paginatedNewsletterList: Newsletter[] = [];
+
   categories: string[] = [];
   selectedCategories: string[] = [];
+
+  currentPage: number = 1;
+  resultsPerPage: number = 6;
+  totalPages: number = 1;
 
   constructor() {
     this.newsService.getAllNewsletters().then((newsletterList: Newsletter[]) => {
       this.newsletterList = newsletterList;
-      this.filteredNewsletterList = newsletterList;
+      this.originalNewsletterList = [...newsletterList];
+      this.filteredNewsletterList = [...newsletterList];
 
       const allCategories = newsletterList.map((newsletter) => newsletter.category);
-      this.categories = Array.from(new Set(allCategories)); // Get unique categories
+      this.categories = Array.from(new Set(allCategories));
+
+      this.calculateTotalPages();
+      this.paginateResults();
     });
   }
 
   filterResults(text: string) {
-    // Filter by text search
-    let filteredList = this.newsletterList;
+    let filteredList = this.originalNewsletterList;
 
     if (text) {
       filteredList = filteredList.filter(newsletter =>
@@ -81,14 +97,16 @@ export class NewsstandComponent {
       );
     }
 
-    // Apply category filter on the already filtered list
     this.filteredNewsletterList = this.filterByCategories(filteredList);
+
+    this.calculateTotalPages();
+    this.paginateResults();
 
   }
 
   filterByCategories(newsletterList: Newsletter[]) {
     if (this.selectedCategories.length === 0) {
-      return newsletterList; // Return the list unfiltered by category if no categories are selected
+      return newsletterList;
     }
 
     return newsletterList.filter((newsletter) =>
@@ -102,22 +120,53 @@ export class NewsstandComponent {
     const category = event.target.value;
 
     if (event.target.checked) {
-      this.selectedCategories.push(category); // Add category to selected
+      this.selectedCategories.push(category);
     } else {
       const index = this.selectedCategories.indexOf(category);
       if (index > -1) {
-        this.selectedCategories.splice(index, 1); // Remove category if unchecked
+        this.selectedCategories.splice(index, 1);
       }
     }
 
-    // Reapply filters after category change
     this.applyFilters();
   }
 
   applyFilters() {
-    // Apply both search and category filters together
     const searchText = (document.querySelector('input[type="text"]') as HTMLInputElement)?.value || '';
     this.filterResults(searchText);
+  }
+
+  calculateTotalPages() {
+    this.totalPages = Math.ceil(this.filteredNewsletterList.length / this.resultsPerPage);
+  }
+
+  paginateResults() {
+    const startIndex = (this.currentPage - 1) * this.resultsPerPage;
+    const endIndex = startIndex + this.resultsPerPage;
+
+    this.paginatedNewsletterList = this.filteredNewsletterList.slice(startIndex, endIndex);
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.paginateResults();
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.paginateResults();
+    }
+  }
+
+  // Go to a specific page - Not implemented
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.paginateResults();
+    }
   }
 
 }
