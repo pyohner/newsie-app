@@ -72,27 +72,33 @@ export class NewsstandComponent {
   }
 
   filterResults(text: string) {
-    if (!text) {
-      this.filteredNewsletterList = this.newsletterList;
-      return;
+    // Filter by text search
+    let filteredList = this.newsletterList;
+
+    if (text) {
+      filteredList = filteredList.filter(newsletter =>
+        newsletter?.name.toLowerCase().includes(text.toLowerCase())
+      );
     }
 
-    this.filteredNewsletterList = this.newsletterList.filter(
-      newsletter => newsletter?.name.toLowerCase().includes(text.toLowerCase())
+    // Apply category filter on the already filtered list
+    this.filteredNewsletterList = this.filterByCategories(filteredList);
+
+  }
+
+  filterByCategories(newsletterList: Newsletter[]) {
+    if (this.selectedCategories.length === 0) {
+      return newsletterList; // Return the list unfiltered by category if no categories are selected
+    }
+
+    return newsletterList.filter((newsletter) =>
+      this.selectedCategories.includes(newsletter.category)
     );
   }
 
-  filterByCategories(text: string) {
-    if (this.selectedCategories.length === 0) {
-      this.filteredNewsletterList = this.newsletterList;
-    } else {
-      this.filteredNewsletterList = this.newsletterList.filter((newsletter) =>
-        this.selectedCategories.includes(newsletter.category)
-      );
-    }
-  }
 
   onCategoryChange(event: any): void {
+
     const category = event.target.value;
 
     if (event.target.checked) {
@@ -104,6 +110,14 @@ export class NewsstandComponent {
       }
     }
 
-    this.filterByCategories(category); // Reapply filter when selection changes
+    // Reapply filters after category change
+    this.applyFilters();
   }
+
+  applyFilters() {
+    // Apply both search and category filters together
+    const searchText = (document.querySelector('input[type="text"]') as HTMLInputElement)?.value || '';
+    this.filterResults(searchText);
+  }
+
 }
