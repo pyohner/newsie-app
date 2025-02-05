@@ -4,6 +4,8 @@ import {CommonModule} from "@angular/common";
 import {Newsletter} from "../newsletter";
 import {NewsService} from "../news.service";
 import {SubscriptionService} from "../subscription.service";
+import {AuthService} from "../auth.service";
+
 
 @Component({
   selector: 'app-newsstand',
@@ -31,12 +33,30 @@ import {SubscriptionService} from "../subscription.service";
               {{ category }}
             </label>
           </div>
-<div>
-          <label>
-            <input type="checkbox" (change)="toggleSubscriptionFilter()" [checked]="showSubscribedOnly">
-            Show Subscribed Only
-          </label>
-</div>
+
+
+          <div *ngIf="isLoggedIn | async">
+            <label>
+              <input type="radio" name="subscriptionFilter" value="all"
+                     [checked]="subscriptionFilter === 'all'"
+                     (change)="onSubscriptionFilterChange('all')">
+              All
+            </label>
+
+            <label>
+              <input type="radio" name="subscriptionFilter" value="subscribed"
+                     [checked]="subscriptionFilter === 'subscribed'"
+                     (change)="onSubscriptionFilterChange('subscribed')">
+              Subscribed
+            </label>
+
+            <label>
+              <input type="radio" name="subscriptionFilter" value="unsubscribed"
+                     [checked]="subscriptionFilter === 'unsubscribed'"
+                     (change)="onSubscriptionFilterChange('unsubscribed')">
+              Unsubscribed
+            </label>
+          </div>
         </div>
 
         <div class="main-content">
@@ -67,6 +87,8 @@ import {SubscriptionService} from "../subscription.service";
 export class NewsstandComponent {
   readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
+  isLoggedIn = this.authService.isLoggedIn$;
+
   newsletterList: Newsletter[] = [];
   newsService: NewsService = inject(NewsService);
 
@@ -87,7 +109,9 @@ export class NewsstandComponent {
   resultsPerPage: number = 6;
   totalPages: number = 1;
 
-  constructor() {
+  subscriptionFilter: 'all' | 'subscribed' | 'unsubscribed' = 'all'; // Default to 'All'
+
+  constructor(private authService: AuthService) {
     this.newsService.getAllNewsletters().then((newsletterList: Newsletter[]) => {
       this.newsletterList = newsletterList;
       this.originalNewsletterList = [...newsletterList];
@@ -108,6 +132,7 @@ export class NewsstandComponent {
   loadUserSubscriptions() {
     this.subscriptionService.getUserSubscriptions().subscribe((subscriptions: number[]) => {
       this.subscribedNewsletterIds = subscriptions.map(id => Number(id)); // Ensure IDs are numbers
+      console.log('Loaded Subscriptions:', this.subscribedNewsletterIds); // Debugging
       this.applyFilters(); // Apply filters only after subscriptions are loaded
     });
   }
@@ -140,23 +165,43 @@ export class NewsstandComponent {
     );
   }
 
-  filterBySubscription(newsletterList: Newsletter[]) {
-    if (!this.showSubscribedOnly) {
+  filterBySubscription(newsletterList: Newsletter[]): Newsletter[] {
+    if (this.subscriptionFilter === 'all') {
       return newsletterList;
     }
 
-    // Debugging: Log values to check if IDs match
-    console.log('Filtering by subscription. Subscribed IDs:', this.subscribedNewsletterIds);
-    console.log('Newsletter IDs:', newsletterList.map(n => n.id));
+    return newsletterList.filter(newsletter => {
+      const newsletterId = Number(newsletter.id); // Ensure ID is a number
 
-    return newsletterList.filter(newsletter =>
-      this.subscribedNewsletterIds.includes(Number(newsletter.id)) // Ensure type consistency
-    );
+      return this.subscriptionFilter === 'subscribed'
+        ? this.subscribedNewsletterIds.includes(newsletterId)
+        : !this.subscribedNewsletterIds.includes(newsletterId);
+    });
   }
 
-  toggleSubscriptionFilter() {
-    this.showSubscribedOnly = !this.showSubscribedOnly;
-    this.applyFilters();
+  // filterBySubscription(newsletterList: Newsletter[]) {
+  //   if (!this.showSubscribedOnly) {
+  //     return newsletterList;
+  //   }
+  //
+  //   // Debugging: Log values to check if IDs match
+  //   console.log('Filtering by subscription. Subscribed IDs:', this.subscribedNewsletterIds);
+  //   console.log('Newsletter IDs:', newsletterList.map(n => n.id));
+  //
+  //   return newsletterList.filter(newsletter =>
+  //     this.subscriptionFilter === 'subscribed'
+  //       ? this.subscribedNewsletterIds.includes(Number(newsletter.id))
+  //       : !this.subscribedNewsletterIds.includes(Number(newsletter.id))
+  //   );
+  // }
+
+  // toggleSubscriptionFilter() {
+  //   this.showSubscribedOnly = !this.showSubscribedOnly;
+  //   this.applyFilters();
+  // }
+  onSubscriptionFilterChange(value: 'all' | 'subscribed' | 'unsubscribed') {
+    this.subscriptionFilter = value;
+    this.filterResults(''); // Force re-filtering with an empty search string
   }
 
 
