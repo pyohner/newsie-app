@@ -43,4 +43,31 @@ export class SubscriptionService {
       })
     );
   }
+
+  getUserSubscriptions(): Observable<number[]> {
+    const userId = this.authService.getUserId();
+    if (userId === null) {
+      console.log("No user logged in, returning empty list");
+      return of([]);
+    }
+
+    console.log(`Fetching subscriptions for userId: ${userId}`);
+
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      map(subscriptions => {
+        console.log("Fetched subscriptions:", subscriptions);
+
+        const userSubscriptions = subscriptions
+          .filter(sub => Number(sub.userId) === Number(userId))
+          .map(sub => Number(sub.newsletterId));
+
+        console.log(`User subscriptions:`, userSubscriptions);
+        return userSubscriptions;
+      }),
+      catchError(error => {
+        console.error("Error fetching user subscriptions:", error);
+        return of([]);
+      })
+    );
+  }
 }
