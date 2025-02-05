@@ -11,7 +11,9 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.loadUserFromStorage(); // Load stored user on service init
+  }
 
   login(email: string, password: string): Observable<boolean> {
     return this.http.get<any[]>(this.apiUrl).pipe(
@@ -36,5 +38,12 @@ export class AuthService {
   getUserId(): number | null {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user).id : null;
+  }
+
+  private loadUserFromStorage() {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.isLoggedInSubject.next(true); // Restore logged-in state
+    }
   }
 }
