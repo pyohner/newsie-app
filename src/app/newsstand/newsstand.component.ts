@@ -3,6 +3,7 @@ import { NewsletterComponent} from "../newsletter/newsletter.component";
 import {CommonModule} from "@angular/common";
 import {Newsletter} from "../newsletter";
 import {NewsService} from "../news.service";
+import {SubscriptionService} from "../subscription.service";
 
 @Component({
   selector: 'app-newsstand',
@@ -30,6 +31,12 @@ import {NewsService} from "../news.service";
               {{ category }}
             </label>
           </div>
+<div>
+          <label>
+            <input type="checkbox" (change)="toggleSubscriptionFilter()" [checked]="showSubscribedOnly">
+            Show Subscribed Only
+          </label>
+</div>
         </div>
 
         <div class="main-content">
@@ -63,12 +70,18 @@ export class NewsstandComponent {
   newsletterList: Newsletter[] = [];
   newsService: NewsService = inject(NewsService);
 
+  subscriptionService: SubscriptionService = inject(SubscriptionService);
+
+
   originalNewsletterList: Newsletter[] = [];
   filteredNewsletterList: Newsletter[] = [];
   paginatedNewsletterList: Newsletter[] = [];
 
   categories: string[] = [];
   selectedCategories: string[] = [];
+
+  subscribedNewsletterIds: number[] = [];
+  showSubscribedOnly: boolean = false;
 
   currentPage: number = 1;
   resultsPerPage: number = 6;
@@ -85,6 +98,17 @@ export class NewsstandComponent {
 
       this.calculateTotalPages();
       this.paginateResults();
+
+      this.loadUserSubscriptions();
+
+    });
+
+  }
+
+  loadUserSubscriptions() {
+    this.subscriptionService.getUserSubscriptions().subscribe((subscriptions: number[]) => {
+      this.subscribedNewsletterIds = subscriptions.map(id => Number(id)); // Ensure IDs are numbers
+      this.applyFilters(); // Apply filters only after subscriptions are loaded
     });
   }
 
@@ -98,6 +122,8 @@ export class NewsstandComponent {
     }
 
     this.filteredNewsletterList = this.filterByCategories(filteredList);
+    this.filteredNewsletterList = this.filterBySubscription(this.filteredNewsletterList);
+
 
     this.calculateTotalPages();
     this.paginateResults();
@@ -112,6 +138,25 @@ export class NewsstandComponent {
     return newsletterList.filter((newsletter) =>
       this.selectedCategories.includes(newsletter.category)
     );
+  }
+
+  filterBySubscription(newsletterList: Newsletter[]) {
+    if (!this.showSubscribedOnly) {
+      return newsletterList;
+    }
+
+    // Debugging: Log values to check if IDs match
+    console.log('Filtering by subscription. Subscribed IDs:', this.subscribedNewsletterIds);
+    console.log('Newsletter IDs:', newsletterList.map(n => n.id));
+
+    return newsletterList.filter(newsletter =>
+      this.subscribedNewsletterIds.includes(Number(newsletter.id)) // Ensure type consistency
+    );
+  }
+
+  toggleSubscriptionFilter() {
+    this.showSubscribedOnly = !this.showSubscribedOnly;
+    this.applyFilters();
   }
 
 
