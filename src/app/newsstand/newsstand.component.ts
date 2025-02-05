@@ -34,6 +34,7 @@ import {AuthService} from "../auth.service";
             </label>
           </div>
 
+          <br>
 
           <div *ngIf="isLoggedIn | async">
             <label>
