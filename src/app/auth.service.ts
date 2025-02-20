@@ -7,7 +7,8 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/users';
+  // private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'http://localhost:3333/api/users';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 

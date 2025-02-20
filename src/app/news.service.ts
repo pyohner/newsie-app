@@ -5,7 +5,8 @@ import {Newsletter} from "./newsletter";
   providedIn: 'root'
 })
 export class NewsService {
-  url = 'http://localhost:3000/newsletters';
+  // url = 'http://localhost:3000/newsletters';
+  url = 'http://localhost:3333/api/newsletters';
 
   async getAllNewsletters(): Promise<Newsletter[]> {
     const data = await fetch(this.url);

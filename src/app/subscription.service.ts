@@ -8,7 +8,8 @@ import {AuthService} from "./auth.service";
   providedIn: 'root'
 })
 export class SubscriptionService {
-  private apiUrl = 'http://localhost:3000/subscriptions';
+  // private apiUrl = 'http://localhost:3000/subscriptions';
+  private apiUrl = 'http://localhost:3333/api/subscriptions';
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
