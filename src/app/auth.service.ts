@@ -47,4 +47,21 @@ export class AuthService {
       this.isLoggedInSubject.next(true); // Restore logged-in state
     }
   }
+
+  register(username: string, email: string, password: string): Observable<boolean> {
+    return this.http.post<any>(this.apiUrl, { username, email, password }).pipe(
+      map(response => {
+        if (response.id) {
+          console.log("User registered successfully:", response);
+          return true; // Registration success
+        }
+        return false; // Registration failure
+      }),
+      catchError(error => {
+        console.error("Registration error:", error);
+        return of(false);
+      })
+    );
+  }
+
 }
