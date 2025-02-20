@@ -24,8 +24,8 @@ import {Observable} from "rxjs";
       <nav class="sub-bar">
         <div *ngIf="isLoggedIn | async">
 
-          <a *ngIf="!(isSubscribed | async)"  class="sub-button">Subscribe</a>
-          <a *ngIf="(isSubscribed | async)" class="unsub-button">Unsubscribe</a>
+          <a *ngIf="!(isSubscribed | async)" (click)="subscribe()"  class="sub-button">Subscribe</a>
+          <a *ngIf="(isSubscribed | async)" (click)="unsubscribe()" class="unsub-button">Unsubscribe</a>
 
         </div>
       </nav>
@@ -56,4 +56,33 @@ export class NewsletterComponent {
       console.warn("Missing userId or newsletterId");
     }
   }
+
+  subscribe() {
+    if (this.userId !== null && this.newsletterId !== undefined) {
+      this.subscriptionService.addSubscription(this.userId, this.newsletterId).subscribe({
+        next: () => {
+          console.log(`Subscribed to newsletter ${this.newsletterId}`);
+          this.isSubscribed = this.subscriptionService.isSubscribed(this.newsletterId);
+        },
+        error: (err) => console.error("Subscription error:", err)
+      });
+    } else {
+      console.warn("Cannot subscribe: userId or newsletterId is missing.");
+    }
+  }
+
+  unsubscribe() {
+    if (this.userId !== null && this.newsletterId !== undefined) {
+      this.subscriptionService.removeSubscription(this.userId, this.newsletterId).subscribe({
+        next: () => {
+          console.log(`Unsubscribed from newsletter ${this.newsletterId}`);
+          this.isSubscribed = this.subscriptionService.isSubscribed(this.newsletterId);
+        },
+        error: (err) => console.error("Unsubscription error:", err)
+      });
+    } else {
+      console.warn("Cannot unsubscribe: userId or newsletterId is missing.");
+    }
+  }
+
 }
