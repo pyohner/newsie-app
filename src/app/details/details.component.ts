@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import {AsyncPipe, CommonModule, Location, NgIf} from '@angular/common';
-import {ActivatedRoute, RouterLinkActive} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import { NewsService} from "../news.service";
 import { Newsletter} from "../newsletter";
 import {AuthService} from "../auth.service";
@@ -12,7 +12,7 @@ import {SubscriptionService} from "../subscription.service";
   standalone: true,
   imports: [
     CommonModule,
-    RouterLinkActive,
+    // RouterLinkActive,
     AsyncPipe,
     NgIf
   ],

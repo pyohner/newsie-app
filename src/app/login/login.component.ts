@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import {FormsModule} from "@angular/forms";
-import { NgIf } from '@angular/common';
+// import { NgIf } from '@angular/common';
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    FormsModule, NgIf
+    FormsModule
   ],
   template: `
     <main>
