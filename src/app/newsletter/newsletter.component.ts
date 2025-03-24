@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Newsletter} from "../newsletter";
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {AuthService} from "../auth.service";
 import {SubscriptionService} from "../subscription.service";
@@ -11,7 +11,7 @@ import {Observable} from "rxjs";
   standalone: true,
   imports: [
     RouterLink,
-    RouterOutlet,
+    // RouterOutlet,
     AsyncPipe,
     NgIf
   ],

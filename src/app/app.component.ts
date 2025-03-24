@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NewsstandComponent} from "./newsstand/newsstand.component";
+// import {NewsstandComponent} from "./newsstand/newsstand.component";
 import { RouterModule } from '@angular/router';
 import {AuthService} from "./auth.service";
 import {AsyncPipe, CommonModule} from "@angular/common";
@@ -8,7 +8,7 @@ import {AsyncPipe, CommonModule} from "@angular/common";
   selector: 'app-root',
   standalone: true,
   imports: [
-    NewsstandComponent,
+    // NewsstandComponent,
     RouterModule,
     AsyncPipe,
     CommonModule

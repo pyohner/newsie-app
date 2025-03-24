@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import {Newsletter} from "../newsletter";
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-featurednewsletter',
   standalone: true,
   imports: [
-    RouterLink,
-    RouterOutlet
+    RouterLink
+    // RouterOutlet
   ],
   template: `
     <section class="listing">

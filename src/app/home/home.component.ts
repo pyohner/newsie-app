@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { NewsletterComponent} from "../newsletter/newsletter.component";
+// import { NewsletterComponent} from "../newsletter/newsletter.component";
 import {CommonModule} from "@angular/common";
 import {FeaturedComponent} from "../featured/featured.component";
 
@@ -8,7 +8,7 @@ import {FeaturedComponent} from "../featured/featured.component";
   standalone: true,
   imports: [
     CommonModule,
-    NewsletterComponent,
+    // NewsletterComponent,
     FeaturedComponent
   ],
   template: `
