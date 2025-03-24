@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Newsletter} from "./newsletter";
+import {Promise} from "cypress/types/cy-bluebird";
 
 @Injectable({
   providedIn: 'root'
