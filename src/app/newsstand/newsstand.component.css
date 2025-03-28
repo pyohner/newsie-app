@@ -70,7 +70,8 @@ button {
 }
 
 .filter-panel p {
-  margin-bottom: 15px;
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 
 .filter-panel label {

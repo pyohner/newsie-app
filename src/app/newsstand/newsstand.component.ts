@@ -6,7 +6,8 @@ import {NewsService} from "../news.service";
 import {SubscriptionService} from "../subscription.service";
 import {AuthService} from "../auth.service";
 import {MatChipListboxChange, MatChipsModule} from "@angular/material/chips";
-
+import {MatRadioModule} from "@angular/material/radio";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-newsstand',
@@ -14,7 +15,9 @@ import {MatChipListboxChange, MatChipsModule} from "@angular/material/chips";
   imports: [
     CommonModule,
     NewsletterComponent,
-    MatChipsModule
+    MatChipsModule,
+    MatRadioModule,
+    FormsModule
   ],
   template: `
 
@@ -34,49 +37,35 @@ import {MatChipListboxChange, MatChipsModule} from "@angular/material/chips";
           <br>
 
           <div *ngIf="isLoggedIn | async">
-            <label>
-              <input type="radio" name="subscriptionFilter" value="all"
-                     [checked]="subscriptionFilter === 'all'"
-                     (change)="onSubscriptionFilterChange('all')">
-              All
-            </label>
-
-            <label>
-              <input type="radio" name="subscriptionFilter" value="subscribed"
-                     [checked]="subscriptionFilter === 'subscribed'"
-                     (change)="onSubscriptionFilterChange('subscribed')">
-              Subscribed
-            </label>
-
-            <label>
-              <input type="radio" name="subscriptionFilter" value="unsubscribed"
-                     [checked]="subscriptionFilter === 'unsubscribed'"
-                     (change)="onSubscriptionFilterChange('unsubscribed')">
-              Unsubscribed
-            </label>
+            <mat-radio-group [(ngModel)]="subscriptionFilter" (change)="onSubscriptionFilterChange($event.value)"
+                             style="display: flex; flex-direction: column;">
+              <mat-radio-button value="all">All</mat-radio-button>
+              <mat-radio-button value="subscribed">Subscribed</mat-radio-button>
+              <mat-radio-button value="unsubscribed">Unsubscribed</mat-radio-button>
+            </mat-radio-group>
           </div>
         </div>
 
         <div class="main-content">
-      <div class="search">
-      <form>
-        <input type="text" placeholder="Search titles" #filter>
-        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-      </form>
-    </div>
-    <div class="results">
-      <app-newsletter
-        *ngFor="let newsletter of paginatedNewsletterList"
-        [newsletterId]="newsletter.id"
-        [newsletter]="newsletter">
-      </app-newsletter>
-    </div>
+          <div class="search">
+            <form>
+              <input type="text" placeholder="Search titles" #filter>
+              <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+            </form>
+          </div>
+          <div class="results">
+            <app-newsletter
+              *ngFor="let newsletter of paginatedNewsletterList"
+              [newsletterId]="newsletter.id"
+              [newsletter]="newsletter">
+            </app-newsletter>
+          </div>
           <div class="pagination">
             <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
             <span>Page {{ currentPage }} of {{ totalPages }}</span>
             <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
           </div>
-    </div>
+        </div>
       </div>
     </div>
   `,
@@ -86,45 +75,31 @@ export class NewsstandComponent {
   readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
   isLoggedIn = this.authService.isLoggedIn$;
-
   newsletterList: Newsletter[] = [];
   newsService: NewsService = inject(NewsService);
-
   subscriptionService: SubscriptionService = inject(SubscriptionService);
-
-
   originalNewsletterList: Newsletter[] = [];
   filteredNewsletterList: Newsletter[] = [];
   paginatedNewsletterList: Newsletter[] = [];
-
   categories: string[] = [];
   selectedCategories: string[] = [];
-
   subscribedNewsletterIds: number[] = [];
-  showSubscribedOnly: boolean = false;
-
+  subscriptionFilter: 'all' | 'subscribed' | 'unsubscribed' = 'all'; // Default to 'All'
   currentPage: number = 1;
   resultsPerPage: number = 6;
   totalPages: number = 1;
-
-  subscriptionFilter: 'all' | 'subscribed' | 'unsubscribed' = 'all'; // Default to 'All'
 
   constructor(private authService: AuthService) {
     this.newsService.getAllNewsletters().then((newsletterList: Newsletter[]) => {
       this.newsletterList = newsletterList;
       this.originalNewsletterList = [...newsletterList];
       this.filteredNewsletterList = [...newsletterList];
-
       const allCategories = newsletterList.map((newsletter) => newsletter.category);
       this.categories = Array.from(new Set(allCategories));
-
       this.calculateTotalPages();
       this.paginateResults();
-
       this.loadUserSubscriptions();
-
     });
-
   }
 
   loadUserSubscriptions() {
@@ -146,11 +121,8 @@ export class NewsstandComponent {
 
     this.filteredNewsletterList = this.filterByCategories(filteredList);
     this.filteredNewsletterList = this.filterBySubscription(this.filteredNewsletterList);
-
-
     this.calculateTotalPages();
     this.paginateResults();
-
   }
 
   // New event handler for the chip list change event
@@ -188,31 +160,11 @@ export class NewsstandComponent {
     });
   }
 
-  // filterBySubscription(newsletterList: Newsletter[]) {
-  //   if (!this.showSubscribedOnly) {
-  //     return newsletterList;
-  //   }
-  //
-  //   // Debugging: Log values to check if IDs match
-  //   console.log('Filtering by subscription. Subscribed IDs:', this.subscribedNewsletterIds);
-  //   console.log('Newsletter IDs:', newsletterList.map(n => n.id));
-  //
-  //   return newsletterList.filter(newsletter =>
-  //     this.subscriptionFilter === 'subscribed'
-  //       ? this.subscribedNewsletterIds.includes(Number(newsletter.id))
-  //       : !this.subscribedNewsletterIds.includes(Number(newsletter.id))
-  //   );
-  // }
-
-  // toggleSubscriptionFilter() {
-  //   this.showSubscribedOnly = !this.showSubscribedOnly;
-  //   this.applyFilters();
-  // }
   onSubscriptionFilterChange(value: 'all' | 'subscribed' | 'unsubscribed') {
     this.subscriptionFilter = value;
-    this.filterResults(''); // Force re-filtering with an empty search string
+    this.applyFilters();
+    // this.filterResults(''); // Force re-filtering with an empty search string
   }
-
 
   onCategoryChange(event: any): void {
 
