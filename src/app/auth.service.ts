@@ -7,8 +7,7 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  // private apiUrl = 'http://localhost:3000/users';
-  private apiUrl = 'http://localhost:3333/api/users';
+  private apiUrl = 'http://localhost:3333/api';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
@@ -17,19 +16,22 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<boolean> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
-      map(users => {
-        const user = users.find(u => u.email === email && u.password === password);
-        if (user) {
+    return this.http.post<any>(`${this.apiUrl}/login`, { email, password }).pipe(
+      map(response => {
+        if (response && response.user) {
           this.isLoggedInSubject.next(true);
-          localStorage.setItem('user', JSON.stringify(user)); // Store user data
-          return true; // Success
+          localStorage.setItem('user', JSON.stringify(response.user));
+          return true;
         }
-        return false; // Failure
+        return false;
       }),
-      catchError(() => of(false))
+      catchError(error => {
+        console.error("Login error:", error);
+        return of(false);
+      })
     );
   }
+
 
   logout() {
     this.isLoggedInSubject.next(false);
@@ -49,7 +51,7 @@ export class AuthService {
   }
 
   register(username: string, email: string, password: string): Observable<boolean> {
-    return this.http.post<any>(this.apiUrl, { username, email, password }).pipe(
+    return this.http.post<any>(`${this.apiUrl}/users`, { username, email, password }).pipe(
       map(response => {
         if (response.id) {
           console.log("User registered successfully:", response);
