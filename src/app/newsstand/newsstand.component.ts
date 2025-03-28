@@ -5,6 +5,7 @@ import {Newsletter} from "../newsletter";
 import {NewsService} from "../news.service";
 import {SubscriptionService} from "../subscription.service";
 import {AuthService} from "../auth.service";
+import {MatChipListboxChange, MatChipsModule} from "@angular/material/chips";
 
 
 @Component({
@@ -12,7 +13,8 @@ import {AuthService} from "../auth.service";
   standalone: true,
   imports: [
     CommonModule,
-    NewsletterComponent
+    NewsletterComponent,
+    MatChipsModule
   ],
   template: `
 
@@ -23,16 +25,11 @@ import {AuthService} from "../auth.service";
         <!-- Left Sidebar for category filter -->
         <div class="filter-panel">
           <p>Categories</p>
-          <div *ngFor="let category of categories">
-            <label>
-              <input
-                type="checkbox"
-                [value]="category"
-                (change)="onCategoryChange($event)"
-              />
+          <mat-chip-listbox (change)="onChipSelectionChange($event)" aria-label="Categories">
+            <mat-chip-option *ngFor="let category of categories" [value]="category">
               {{ category }}
-            </label>
-          </div>
+            </mat-chip-option>
+          </mat-chip-listbox>
 
           <br>
 
@@ -154,6 +151,17 @@ export class NewsstandComponent {
     this.calculateTotalPages();
     this.paginateResults();
 
+  }
+
+  // New event handler for the chip list change event
+  onChipSelectionChange(event: MatChipListboxChange): void {
+    // event.value holds the selected chip’s value (i.e. category)
+    if (!event.value) {
+      this.selectedCategories = [];
+    } else {
+      this.selectedCategories = event.value;
+    }
+    this.applyFilters();
   }
 
   filterByCategories(newsletterList: Newsletter[]) {

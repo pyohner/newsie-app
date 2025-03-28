@@ -109,3 +109,7 @@ button {
   font-size: 16px;
   margin: 0 10px;
 }
+
+.mat-mdc-chip-set {
+  max-width: 200px;
+}
