@@ -49,6 +49,25 @@ describe('SubscriptionService', () => {
     httpMock.verify();
   });
 
+  describe('getUserId', () => {
+    it('should return the user id when a valid user is stored in localStorage', () => {
+      const validUser = { id: 42, email: 'test@example.com' };
+      localStorage.setItem('user', JSON.stringify(validUser));
+      expect(service.getUserId()).toEqual(42);
+    });
+
+    it('should return null when localStorage has no valid user (getItem returns null)', () => {
+      localStorage.removeItem('user');
+      expect(service.getUserId()).toBeNull();
+    });
+
+    it('should return null when localStorage contains an empty object', () => {
+      localStorage.setItem('user', '{}');
+      expect(service.getUserId()).toBeNull();
+    });
+  });
+
+
   describe('getUserSubscriptions', () => {
     it('should return an empty list if no user is logged in (via AuthService)', () => {
       fakeAuthService.getUserId.and.returnValue(null);

@@ -17,6 +17,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {HttpClient} from "@angular/common/http";
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -41,6 +42,22 @@ describe('AuthService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  describe('loadUserFromStorage (constructor behavior)', () => {
+    it('should restore logged in state when a user exists in localStorage', () => {
+      // Arrange: set a mock user in localStorage
+      const mockUser = {id: 1, email: 'test@example.com'};
+      localStorage.setItem('user', JSON.stringify(mockUser));
+
+      // Act: create a new instance to trigger the constructor
+      const auth = new AuthService(TestBed.inject(HttpClient));
+
+      // Assert: verify that isLoggedInSubject emitted true
+      auth.isLoggedIn$.subscribe(isLoggedIn => {
+        expect(isLoggedIn).toBeTrue();
+      });
+    });
   });
 
   describe('login', () => {
