@@ -23,6 +23,16 @@ describe('Test Newsie App', () => {
       .type('bite'); // replace 'Angular' with your search term
     cy.get('button.primary').click();
     cy.contains('Seriously Simple Bites').should('be.visible');
+    cy.get('input[placeholder="Search titles"]')
+      .should('be.visible')
+      .clear(); // clear search term
+    cy.get('button.primary').click();
+    cy.contains('Daily World News').should('be.visible');
+    cy.get('mat-chip-listbox')
+      .contains('mat-chip-option', 'Lifestyle')
+      .click()
+      .should('have.class', 'mat-mdc-chip-selected');
+    cy.contains('Seriously Simple Bites').should('be.visible');
     cy.get('.brand-logo').click();
   });
 
